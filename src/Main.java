@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.io.IOException;
 
 public class Main extends JFrame {
-    private int WIDTH = 350;
+    private int WIDTH = 400;
     private int HEIGTH = 420;
     private boolean IS_RESIZABLE = false;
     private String FONT_TYPE = "SansSerif";

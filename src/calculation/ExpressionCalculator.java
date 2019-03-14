@@ -3,10 +3,13 @@ package calculation;
 
 import java.io.IOException;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ExpressionCalculator {
     private static final String OPERATORS = "+-*/";
     private static final String DELIMITERS = "()" + OPERATORS;
+    private static final String ILLEGAL_SYMBOLS = "[A-Za-zА-Яа-я!\"№;%:?~`@#$%^'<>|]";
 
     private static final String UNARY_MINUS = "un";
     private static final String ADD = "+";
@@ -20,7 +23,10 @@ public class ExpressionCalculator {
     public static final String ZERO_DIVISION = ERROR + "деление на 0";
 
 
-    private static String prepareExpression(String expression) {
+    private static String prepareExpression(String expression) throws IOException {
+        Pattern pattern = Pattern.compile(ILLEGAL_SYMBOLS);
+        Matcher matcher = pattern.matcher(expression);
+        if (matcher.find()) throw new IOException(INCORRECT_EXPRESSION);
         return expression.replaceAll(" ", "").replaceAll(",", ".");
     }
 
